@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+//import './App.css';
+import { useState } from 'react';
+import './css/custom.css';
+import TodoList from './components/TodoList';
 
 function App() {
+  const [inputItem, setInputItem] = useState('');
+  const [todoList, setTodoList] = useState([]);
+
+  const addItem = () => {
+    console.log("input Item : ", inputItem);
+    //add to todoList
+    setTodoList([...todoList, inputItem]);
+    //empty input
+    setInputItem('');
+
+  }
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          First commit
-        </a>
-      </header>
-    </div>
+    <main className='app'>
+      <div className='inputForm'>
+        <input type='text' placeholder='add todo list' value={inputItem} onChange={(e)=> setInputItem(e.target.value)} />
+        <button onClick={addItem}>ADD</button>
+      </div>
+      
+      <TodoList todoList={todoList} setTodoList={setTodoList} />
+
+
+    </main>
+   
+
+
   );
 }
 

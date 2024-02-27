@@ -1,50 +1,73 @@
 import { useState } from "react";
+import deleteIcon from "../assets/images/bin.png";
+import editIcon from "../assets/images/compose.png";
+import saveIcon from "../assets/images/check.png";
 
+const TodoItem2 = ({ item, todoList, setTodoList }) => {
+  const [text, setText] = useState(item.text);
+  const [editToggle, setEditToggle] = useState(false);
 
-const TodoItem = ( {item, id, todoList, setTodoList} ) => {
-    const [text, setText] = useState(item);
-    const [editToggle, setEditToggle] = useState(false);
+  /* Edit todo */
+  const handleUpdate = (id) => {
+    const editTodoList = todoList.map((item) =>
+      item.id === id ? { ...item, text: text } : item
+    );
+    setTodoList(editTodoList);
+    setEditToggle(false);
+  };
 
-    const editItemBtn = (id) => {
-        const editTodoList = todoList.map((item, idx) => 
-            idx === id ? text : item
-        );
-        setTodoList(editTodoList);
-        setEditToggle(!editToggle); 
+  /* Remove todo */
+  const handleDelete = (id) => {
+    if (editToggle) {
+      setEditToggle(false);
     }
-    const handleDelete = (id) => {  
-        if(editToggle){
-            setEditToggle(!editToggle);
-        }
-        setTodoList(todoList.filter((item, idx) => idx !== id ));
+    setTodoList(todoList.filter((item) => item.id !== id));
+  };
 
-        
-    }
-   
-    return(
-        <div className="todo-item">
-            <ul>
-                <li>
-                    <label>
-                        <input type="checkbox"/>
-                        {
-                            editToggle 
-                            ? 
-                            <>
-                                <input type="text" value={text} onChange={(e)=> setText(e.target.value)} ></input>
-                                <button onClick={()=>{ editItemBtn(id)}}>save</button>
-                            </>
-                            :<>
-                                <span>{item}</span>
-                                <button onClick={()=>{ setText(item); setEditToggle(!editToggle)}}>edit</button>
-                            </>
-                        }
-                    </label>             
-                    <button onClick={() => {handleDelete(id)}}>remove</button>
-                </li>
-            </ul>
-        </div>
-    )
-}
+  /* Checkbox todo -> complete */
+  const handleCheckBox = (id) => {
+    const updateTodoList = todoList.map((item) =>
+      item.id === id ? { ...item, checked: !item.checked } : item
+    );
+    setTodoList(updateTodoList);
+  };
 
-export default TodoItem;
+  /* Toggle edit mode */
+  const toggleEdit = () => {
+    setText(item.text);
+    setEditToggle(!editToggle);
+  };
+
+
+  return (
+    <div className="todo-item">
+      <ul>
+        <li>
+          <div>
+            <input
+              type="checkbox"
+              className="todo-item-checkbox"
+              checked={item.checked}
+              onChange={(e) => handleCheckBox(item.id)}
+            />
+            { editToggle 
+                ? <input type="text" value={text} maxLength={50} onChange={(e) => setText(e.target.value)} />
+                : <label className={item.checked ? "todo-item-checked" : ""}>{item.text}</label>
+            }
+          </div>
+          <div>
+            {editToggle
+                ? <img src={saveIcon} alt="save" onClick={() => handleUpdate(item.id)} /> 
+                : <img src={editIcon} alt="edit" onClick={toggleEdit} />
+            }
+            <img src={deleteIcon} alt="remove" onClick={() => handleDelete(item.id)} />
+            {/* <button onClick={editToggle ? () => saveEdit(item.id) : toggleEdit}>{buttonText}</button>
+            <button onClick={() => handleDelete(item.id)}>remove</button> */}
+          </div>
+        </li>
+      </ul>
+    </div>
+  );
+};
+
+export default TodoItem2;

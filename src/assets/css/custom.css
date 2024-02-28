@@ -1,13 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Anta&family=Red+Hat+Display&family=Rubik+Scribble&family=Signika+Negative:wght@600&display=swap');
 /*  
  *   App, Main 
  */
 .app{
+    font-family: "Anta", sans-serif;
     text-align: center;
     margin: 0 auto;
     margin-top: 4rem;
     padding-left: 10%;
     padding-right: 10%;
-    
+}
+header{
+    font-family: "Rubik Scribble", system-ui; 
+    text-align: center;
+    font-size: -webkit-xxx-large;
+    font-weight: bold;
+    padding-bottom: 3%;
+}
+input, button {
+    font-family: "Anta", sans-serif;
 }
 .inputForm{
     display: flex;
@@ -18,7 +29,7 @@
     font-size: 1.25rem;
     outline: none;
     border: none;
-    border-bottom: 1px solid #c5f6fa;
+    border-bottom: 1px solid #27385a;
   }
   
 .inputForm button {
@@ -27,7 +38,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     margin-left: 1rem;
-    background: #22b8cf;
+    background: #27385a; /* #22b8cf; */
     border-radius: 3px;
     color: white;
     font-weight: 600;
@@ -35,10 +46,19 @@
 }
   
 .inputForm button:hover {
-    background: #3bc9db;
+    background: #79a6ff; /* #3bc9db * */
+    border: none;
 }
 .todo-list{
     display: flex;
+}
+.todo-score{
+    font-family: "Rubik Scribble", system-ui; 
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+.todo-score div{
+    font-size: xx-large;
 }
 
 /*  
@@ -51,7 +71,6 @@
 }
 
 .todo-list-div{
-    padding-top: 5%;
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -62,7 +81,7 @@
   }
   
 .todo-complete-span {
-    color: #666; /* complete list font color */
+    color: #0653a5; /* complete list font color */
 }
   
 .todo-list-div > span {
@@ -71,19 +90,56 @@
     margin-bottom: 10px; 
     width: 100%;
 }
+.todo-list-none-frame{
+    background-color: #f9fdff;
+}
+.todo-list-none-frame img{
+    height: 100px;
+    opacity: 0.1;
+    padding-top: 10%;
+    padding-bottom: 10%;
+}
+
 
 /*  
  *   TodoItem
  */
 
-.todo-item{
-    margin-bottom: 10px;
-}
+
 .todo-item input[type="text"]{
+    height: 25px;
     border: none;
     padding: 5px;
     border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
+.todo-item input[type="checkbox"] {
+    appearance: none; 
+    width: 20px; 
+    height: 20px; 
+    border: 2px solid #452828; 
+    border-radius: 4px; 
+    outline: none; 
+    cursor: pointer; 
+    margin-right: 10px; 
+  }
+  
+  .todo-item input[type="checkbox"]:checked {
+    border-color: #452828; 
+  }
+  
+  .todo-item input[type="checkbox"]:checked::before {
+    content: "\2713"; 
+    font-size: 16px; 
+    color: #fff; 
+    display: inline-block; 
+    width: 20px; 
+    height: 20px; 
+    text-align: center; 
+    line-height: 20px; 
+    background-color: #ff6767; 
+    border-radius: 4px; 
+  }
 .todo-item img{
     width: 25px;
     height: 25px;
@@ -91,6 +147,7 @@
 }
 .todo-item img:hover{
     background-color: #d4fff1;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -104,14 +161,12 @@
   align-items: center;
   padding: 15px;
   border-radius: 5px;
-  background-color: lightblue;
+  background-color:  #edf3ff;
+  cursor: auto;
 }
-.todo-item label{
-    width: '100%';
-    overflow: 'hidden';
-    text-overflow: 'ellipsis';
-    white-space: 'nowrap'
-      
+.todo-item li:hover{
+    background-color: #b1ccff;
+   
 }
 .todo-item li div{
     display: flex;
@@ -125,14 +180,27 @@
 .todo-item-checked {
     font-style: italic;
     text-decoration: line-through; /* line in the middle */
-    color: #868e96;
+    color: #0653a5;
 }
 
 
-/* Mobile - Portrait */
-@media (max-width: 575px) {
+/* tablet- smaller than 992px  */
+@media (max-width: 991px) {
     .todo-list {
         flex-flow: column;
     }
 }
-
+/* mobile */
+@media screen and (max-width:767px) {
+    .todo-score div{
+        font-size: 22px;
+        padding-top: 5%;
+        padding-bottom: 5%;
+    }
+    .todo-item ul{
+        margin: 0;
+    }
+    .todo-item{
+        margin-bottom: 15px;
+    }
+}

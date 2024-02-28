@@ -1,9 +1,7 @@
-//import './App.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './assets/css/custom.css';
 import TodoList from './components/TodoList';
-import uuid from 'react-uuid'; //npm install react-uuid
-
+import uuid from 'react-uuid'; /* npm install react-uuid */
 
 function App() {
   const [inputItem, setInputItem] = useState('');
@@ -12,33 +10,35 @@ function App() {
                                     ? JSON.parse(localStorage.getItem("todoList"))
                                     : []
                                   );
+  const [cntComplete, setCntComplete] = useState(todoList.filter(item => item.checked).length);
 
-
-  /* todolist change -> localstorage  */
-  useEffect(()=>{
+  useEffect(()=>{   /* todolist change -> localstorage  */
      localStorage.setItem("todoList", JSON.stringify(todoList));   
+     setCntComplete(todoList.filter(item => item.checked).length);
   }, [todoList])
 
   const addItem = () => {
-    // id, text, checked
+    if(!inputItem.trim()){   /* check if it's empty value */
+      alert("Please type your todo");
+      return;
+    }
     const newTodoItem = {
-      id : uuid(), // unique id
+      id : uuid(), /* unique id */
       text : inputItem,
       checked : false
-    }
-    //add to todoList
-    setTodoList([...todoList, newTodoItem]);
-    //empty input
-    setInputItem('');
+    }  
+    setTodoList([...todoList, newTodoItem]);  /* add to todoList */
+    setInputItem('');    /* empty input */
   }
  
   
   return (
     <main className='app'>
+      <header>TODO LIST</header>
       <div className='inputForm'>
         <input type='text' 
-               placeholder='add todo list' 
-               maxLength={50} 
+               placeholder='type here ....' 
+               maxLength={20} 
                value={inputItem} 
                onChange={(e)=> setInputItem(e.target.value)} 
                onKeyDown={(e) => { if(e.key === "Enter") addItem() }} 
@@ -46,17 +46,14 @@ function App() {
         <button onClick={addItem}>ADD</button>
       </div>
       
+      <div className='todo-score'>
+        <div><b>🔥 <u>{cntComplete} </u>out of <u>{todoList.length}</u> COMPLETED 🔥</b></div>
+      </div>
       <div className="todo-list" >
-        {/* to-do item list */}
-        <TodoList todoList={todoList} setTodoList={setTodoList} checkedList={false} />
-
-        {/* completed item list */}
-        <TodoList todoList={todoList} setTodoList={setTodoList} checkedList={true} />
+        <TodoList todoList={todoList} setTodoList={setTodoList} checkedList={false} /> {/* to-do item list */}
+        <TodoList todoList={todoList} setTodoList={setTodoList} checkedList={true} /> {/* completed item list */}
       </div>
     </main>
-   
-
-
   );
 }
 

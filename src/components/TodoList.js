@@ -1,4 +1,8 @@
 import TodoItem from "./TodoItem";
+import completeIcon from "../assets/images/trumpet.png";
+import todoIcon from "../assets/images/todo.png";
+import noItemIcon from "../assets/images/nodata.png";
+
 
 const TodoList = ({todoList, setTodoList, checkedList}) => {
 
@@ -6,26 +10,28 @@ const TodoList = ({todoList, setTodoList, checkedList}) => {
         <div className="todo-list-div">
             {
                 checkedList
-                ?   <span className="todo-complete-span"> COMPLETED LIST </span>
-                :   <span className="todo-list-span"> TO-DO LIST </span>
+                ?   <span className="todo-complete-span"> COMPLETED LIST&nbsp;<img src={completeIcon} /> </span>
+                :   <span className="todo-list-span"> TO-DO LIST&nbsp;<img src={todoIcon} /> </span>
             }
-         
             {
-                todoList.map((item) => {
-                    if(checkedList !== item.checked){  //compare checkedList with each item
+                todoList.length <= 0    /* check if the todoList is empty */
+                ? <div className="todo-list-none-frame">
+                     <img src={noItemIcon} />
+                  </div>
+                : todoList.map((item) => {
+                    if(checkedList !== item.checked){  /* compare checkedList value with each item */
                         return null;
                     }else{
                         return(
-                            <TodoItem key={item.id} 
-                              item = {item}
-                              todoList={todoList} 
-                              setTodoList = {setTodoList}/>
+                                <TodoItem key={item.id} 
+                                item = {item}
+                                todoList={todoList} 
+                                setTodoList = {setTodoList}/>
                         )
                     }
-                })             
-            }
+                })    
+            } 
         </div>
-     
     )
 }
 

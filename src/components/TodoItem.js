@@ -3,7 +3,7 @@ import deleteIcon from "../assets/images/bin.png";
 import editIcon from "../assets/images/compose.png";
 import saveIcon from "../assets/images/check.png";
 
-const TodoItem2 = ({ item, todoList, setTodoList }) => {
+const TodoItem = ({ item, todoList, setTodoList }) => {
   const [text, setText] = useState(item.text);
   const [editToggle, setEditToggle] = useState(false);
 
@@ -18,9 +18,7 @@ const TodoItem2 = ({ item, todoList, setTodoList }) => {
 
   /* Remove todo */
   const handleDelete = (id) => {
-    if (editToggle) {
-      setEditToggle(false);
-    }
+    if (editToggle){ setEditToggle(false) };
     setTodoList(todoList.filter((item) => item.id !== id));
   };
 
@@ -38,7 +36,6 @@ const TodoItem2 = ({ item, todoList, setTodoList }) => {
     setEditToggle(!editToggle);
   };
 
-
   return (
     <div className="todo-item">
       <ul>
@@ -51,7 +48,7 @@ const TodoItem2 = ({ item, todoList, setTodoList }) => {
               onChange={(e) => handleCheckBox(item.id)}
             />
             { editToggle 
-                ? <input type="text" value={text} maxLength={50} onChange={(e) => setText(e.target.value)} />
+                ? <input type="text" value={text} maxLength={20} onChange={(e) => setText(e.target.value)} />
                 : <label className={item.checked ? "todo-item-checked" : ""}>{item.text}</label>
             }
           </div>
@@ -61,8 +58,6 @@ const TodoItem2 = ({ item, todoList, setTodoList }) => {
                 : <img src={editIcon} alt="edit" onClick={toggleEdit} />
             }
             <img src={deleteIcon} alt="remove" onClick={() => handleDelete(item.id)} />
-            {/* <button onClick={editToggle ? () => saveEdit(item.id) : toggleEdit}>{buttonText}</button>
-            <button onClick={() => handleDelete(item.id)}>remove</button> */}
           </div>
         </li>
       </ul>
@@ -70,4 +65,4 @@ const TodoItem2 = ({ item, todoList, setTodoList }) => {
   );
 };
 
-export default TodoItem2;
+export default TodoItem;

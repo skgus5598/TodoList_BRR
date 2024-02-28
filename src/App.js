@@ -38,7 +38,7 @@ function App() {
       <div className='inputForm'>
         <input type='text' 
                placeholder='type here ....' 
-               maxLength={20} 
+               maxLength={30} 
                value={inputItem} 
                onChange={(e)=> setInputItem(e.target.value)} 
                onKeyDown={(e) => { if(e.key === "Enter") addItem() }} 

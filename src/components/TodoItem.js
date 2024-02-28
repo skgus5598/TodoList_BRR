@@ -48,8 +48,8 @@ const TodoItem = ({ item, todoList, setTodoList }) => {
               onChange={(e) => handleCheckBox(item.id)}
             />
             { editToggle 
-                ? <input type="text" value={text} maxLength={20} onChange={(e) => setText(e.target.value)} />
-                : <label className={item.checked ? "todo-item-checked" : ""}>{item.text}</label>
+                ? <input type="text" value={text} maxLength={30} onChange={(e) => setText(e.target.value)} />
+                : <label style={{textAlign:"left"}} className={item.checked ? "todo-item-checked" : ""}>{item.text}</label>
             }
           </div>
           <div>

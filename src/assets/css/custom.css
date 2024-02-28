@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&family=Red+Hat+Display&family=Rubik+Scribble&family=Signika+Negative:wght@600&display=swap');
+
+html{
+    min-width: 375px;
+    min-height: 667px;
+}
 /*  
  *   App, Main 
  */
@@ -185,13 +190,17 @@ input, button {
 
 
 /* tablet- smaller than 992px  */
-@media (max-width: 991px) {
+@media (max-width: 768px) {
     .todo-list {
         flex-flow: column;
     }
 }
 /* mobile */
-@media screen and (max-width:767px) {
+@media screen and (max-width:576px) { /* 480*/
+    .app{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
     .todo-score div{
         font-size: 22px;
         padding-top: 5%;
@@ -203,4 +212,7 @@ input, button {
     .todo-item{
         margin-bottom: 15px;
     }
+    
 }
+
+

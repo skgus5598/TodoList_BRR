@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Anta&family=Red+Hat+Display&family=Rubik+Scribble&family=Signika+Negative:wght@600&display=swap');
 
-html{
+html, body{
+    overflow: hidden; /* prevent scroll */
     min-width: 375px;
     min-height: 667px;
 }
@@ -8,12 +9,15 @@ html{
  *   App, Main 
  */
 .app{
+    overflow-y: auto; /* vertical scroll*/
+    max-height: calc(100vh - 7rem); /* viewport height - 7 rem  */
     font-family: "Anta", sans-serif;
     text-align: center;
     margin: 0 auto;
-    margin-top: 4rem;
+    margin-top: 2rem;
     padding-left: 10%;
     padding-right: 10%;
+    padding-bottom: 10%;
 }
 header{
     font-family: "Rubik Scribble", system-ui; 

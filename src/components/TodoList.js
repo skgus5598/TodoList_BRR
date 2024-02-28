@@ -1,7 +1,7 @@
 import TodoItem from "./TodoItem";
 import completeIcon from "../assets/images/trumpet.png";
 import todoIcon from "../assets/images/todo.png";
-import noItemIcon from "../assets/images/nodata.png";
+import noItemIcon from "../assets/images/noItem.png";
 
 
 const TodoList = ({todoList, setTodoList, checkedList}) => {

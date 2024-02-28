@@ -63,6 +63,7 @@ input, button {
     padding-bottom: 3%;
 }
 .todo-score div{
+    text-shadow: 3px 4px 5px lightgray;
     font-size: xx-large;
 }
 
@@ -73,6 +74,7 @@ input, button {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+  text-shadow: 3px 4px 5px silver;
 }
 
 .todo-list-div{

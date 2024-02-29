@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import './assets/css/custom.css';
 import TodoList from './components/TodoList';
-import uuid from 'react-uuid'; /* npm install react-uuid */
+import uuid from 'react-uuid';
 
 function App() {
   const [inputItem, setInputItem] = useState('');
@@ -11,10 +11,18 @@ function App() {
                                     : []
                                   );
   const [cntComplete, setCntComplete] = useState(todoList.filter(item => item.checked).length);
+  const [compToggle, setCompToggle] = useState(false); /* All complete event toggle  */
 
   useEffect(()=>{   /* todolist change -> localstorage  */
      localStorage.setItem("todoList", JSON.stringify(todoList));   
      setCntComplete(todoList.filter(item => item.checked).length);
+     /* All complete event  */
+     if(todoList.length > 0 && todoList.filter(item => !item.checked).length === 0 ){
+        setCompToggle(true);
+        setTimeout(() => {
+            setCompToggle(false);
+        }, 500);
+     }
   }, [todoList])
 
   const addItem = () => {
@@ -34,7 +42,7 @@ function App() {
   
   return (
     <main className='app'>
-      <header>TODO LIST</header>
+      <header>TODO LIST v.2</header>
       <div className='inputForm'>
         <input type='text' 
                placeholder='type here ....' 
@@ -45,10 +53,14 @@ function App() {
         />
         <button onClick={addItem}>ADD</button>
       </div>
-      
       <div className='todo-score'>
-        <div><b>🔥 <u>{cntComplete} </u>out of <u>{todoList.length}</u> COMPLETED 🔥</b></div>
+      {
+        compToggle  /* add className for css */
+        ?<div className='todo-score-complete'><b>🔥 <u>{cntComplete} </u>out of <u>{todoList.length}</u> COMPLETED 🔥</b></div>
+        :<div><b>🔥 <u>{cntComplete} </u>out of <u>{todoList.length}</u> COMPLETED 🔥</b></div>
+      }
       </div>
+  
       <div className="todo-list" >
         <TodoList todoList={todoList} setTodoList={setTodoList} checkedList={false} /> {/* to-do item list */}
         <TodoList todoList={todoList} setTodoList={setTodoList} checkedList={true} /> {/* completed item list */}

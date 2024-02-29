@@ -10,8 +10,14 @@ const TodoList = ({todoList, setTodoList, checkedList}) => {
         <div className="todo-list-div">
             {
                 checkedList
-                ?   <span className="todo-complete-span"> COMPLETED LIST&nbsp;<img src={completeIcon} /> </span>
-                :   <span className="todo-list-span"> TO-DO LIST&nbsp;<img src={todoIcon} /> </span>
+                ?   <div className="todo-list-name">
+                        <span className="todo-complete-span"> COMPLETED LIST&nbsp;</span>
+                        <img src={completeIcon} /> 
+                    </div>
+                :   <div className="todo-list-name">
+                        <span className="todo-list-span"> TO-DO LIST&nbsp;</span>
+                        <img src={todoIcon} /> 
+                    </div>
             }
             {
                 todoList.length <= 0    /* check if the todoList is empty */

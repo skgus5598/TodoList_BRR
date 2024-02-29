@@ -22,10 +22,12 @@ html, body{
 header{
     font-family: "Rubik Scribble", system-ui; 
     text-align: center;
-    font-size: -webkit-xxx-large;
+    /* font-size: -webkit-xxx-large; v1*/
+    font-size: 70px;
     font-weight: bold;
     padding-bottom: 3%;
 }
+
 input, button {
     font-family: "Anta", sans-serif;
 }
@@ -64,12 +66,29 @@ input, button {
 .todo-score{
     font-family: "Rubik Scribble", system-ui; 
     padding-top: 3%;
-    padding-bottom: 3%;
+    padding-bottom: 5%;
 }
 .todo-score div{
     text-shadow: 3px 4px 5px lightgray;
-    font-size: xx-large;
+    font-size: 35px;
 }
+/* All complete event */
+@media (prefers-reduced-motion: no-preference) {
+    .todo-score-complete {
+      animation: comeplete-score-spin infinite 0.5s;
+    }
+}
+@keyframes comeplete-score-spin {
+    from {
+      transform: scale(1, 1);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1.2, 1.2);
+      opacity: 1;
+    }
+  }
+  
 
 /*  
  *   TodoList
@@ -90,7 +109,7 @@ input, button {
 .todo-list-span {
     color: #333; /* todo list font color*/
   }
-  
+
 .todo-complete-span {
     color: #0653a5; /* complete list font color */
 }
@@ -101,8 +120,10 @@ input, button {
     margin-bottom: 10px; 
     width: 100%;
 }
-.todo-list-none-frame{
-    background-color: #f9fdff;
+.todo-list-name{
+    display: flex;
+    align-items: flex-start;
+    align-self: center;
 }
 .todo-list-none-frame img{
     height: 100px;
@@ -166,18 +187,20 @@ input, button {
     padding-left: 5%;
     padding-right: 5%;
 }
+
 .todo-item li{
   display: flex;
   justify-content: space-between; 
   align-items: center;
   padding: 15px;
   border-radius: 5px;
-  background-color:  #edf3ff;
-  cursor: auto;
+  cursor: pointer;
+  background: hsl(0deg 0% 99.24%);
+  box-shadow: 1px 5px 8px 0px hsl(210deg 33.45% 56.19%);
+
 }
 .todo-item li:hover{
-    background-color: #b1ccff;
-   
+  box-shadow: 1px 2px 2px 1px hsl(210deg 33.45% 56.19%);
 }
 .todo-item li div{
     display: flex;
@@ -199,6 +222,9 @@ input, button {
 @media (max-width: 768px) {
     .todo-list {
         flex-flow: column;
+    }
+    header{
+        font-size: 50px;
     }
 }
 /* mobile */

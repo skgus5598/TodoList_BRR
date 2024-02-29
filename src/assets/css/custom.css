@@ -54,11 +54,12 @@ input, button {
     color: white;
     font-weight: 600;
     cursor: pointer;
+    box-shadow: 1px 5px 4px 0px hsl(0deg 0% 68.71%);
 }
   
 .inputForm button:hover {
-    background: #79a6ff; /* #3bc9db * */
-    border: none;
+    box-shadow: 1px 1px 2px 1px hsl(0deg 0% 68.71%);
+
 }
 .todo-list{
     display: flex;
@@ -71,6 +72,28 @@ input, button {
 .todo-score div{
     text-shadow: 3px 4px 5px lightgray;
     font-size: 35px;
+}
+.clearBtn{
+    display: flex;
+    padding-bottom: 2%;
+    padding-top: 10px;
+}
+.clearBtn button{
+    width: -webkit-fill-available;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin: 1rem;
+    background: #27385a; /* #22b8cf; */
+    border-radius: 3px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 1px 5px 4px 0px hsl(0deg 0% 68.71%);
+}
+.inputForm button:hover, .clearBtn button:hover{
+    box-shadow: 1px 1px 2px 1px hsl(0deg 0% 68.71%);
 }
 /* All complete event */
 @media (prefers-reduced-motion: no-preference) {
@@ -107,11 +130,11 @@ input, button {
     height: 100%;
 }
 .todo-list-span {
-    color: #333; /* todo list font color*/
+    color: #354b77; /* todo list font color*/
   }
 
 .todo-complete-span {
-    color: #0653a5; /* complete list font color */
+    color: #3f95f0 /* complete list font color */
 }
   
 .todo-list-div > span {
@@ -196,7 +219,7 @@ input, button {
   border-radius: 5px;
   cursor: pointer;
   background: hsl(0deg 0% 99.24%);
-  box-shadow: 1px 5px 8px 0px hsl(210deg 33.45% 56.19%);
+  box-shadow: 1px 5px 4px 0px hsl(210deg 33.45% 56.19%);
 
 }
 .todo-item li:hover{
@@ -233,8 +256,20 @@ input, button {
         padding-left: 5%;
         padding-right: 5%;
     }
+    .todo-score{
+        padding-bottom: 0%;
+    }
+    .todo-list-none-frame img{
+        height: 80px;
+        padding: 0%;
+    }
+    .todo-complete-span, .todo-list-span{
+        font-size: 20px;
+        padding-top: 5%;
+    }
+  
     .todo-score div{
-        font-size: 22px;
+        font-size: 28px;
         padding-top: 5%;
         padding-bottom: 5%;
     }

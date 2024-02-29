@@ -38,11 +38,19 @@ function App() {
     setTodoList([...todoList, newTodoItem]);  /* add to todoList */
     setInputItem('');    /* empty input */
   }
+
+  const clearList = (type) => {
+    if(type === 'done'){
+      setTodoList(todoList.filter(item => !item.checked))
+    }else{
+      setTodoList([]);
+    }
+  }
  
   
   return (
     <main className='app'>
-      <header>TODO LIST v.2</header>
+      <header>TODO LIST</header>
       <div className='inputForm'>
         <input type='text' 
                placeholder='type here ....' 
@@ -56,15 +64,20 @@ function App() {
       <div className='todo-score'>
       {
         compToggle  /* add className for css */
-        ?<div className='todo-score-complete'><b>🔥 <u>{cntComplete} </u>out of <u>{todoList.length}</u> COMPLETED 🔥</b></div>
-        :<div><b>🔥 <u>{cntComplete} </u>out of <u>{todoList.length}</u> COMPLETED 🔥</b></div>
+        ?<div className='todo-score-complete'><b>🔥 <u>{cntComplete}</u> &#47; <u>{todoList.length}</u> COMPLETED 🔥</b></div>
+        :<div><b>🔥 <u>{cntComplete}</u> &#47; <u>{todoList.length}</u> COMPLETED 🔥</b></div>
       }
-      </div>
-  
+      </div>  
+      
       <div className="todo-list" >
         <TodoList todoList={todoList} setTodoList={setTodoList} checkedList={false} /> {/* to-do item list */}
         <TodoList todoList={todoList} setTodoList={setTodoList} checkedList={true} /> {/* completed item list */}
       </div>
+
+      <div className='clearBtn'>
+        <button onClick={() => clearList('all')}>CLEAR ALL</button>
+        <button onClick={() => clearList('done')}>CLEAR DONE</button>
+      </div>   
     </main>
   );
 }

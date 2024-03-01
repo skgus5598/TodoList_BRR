@@ -20,9 +20,10 @@ const TodoList = ({todoList, setTodoList, checkedList}) => {
                     </div>
             }
             {
-                todoList.length <= 0    /* check if the todoList is empty */
+                todoList.length === 0    /* check if the todoList is empty */
                 ? <div className="todo-list-none-frame">
-                     <img src={noItemIcon} />
+                     {/* <img src={noItemIcon} /> */}
+                     No Item
                   </div>
                 : todoList.map((item) => {
                     if(checkedList !== item.checked){  /* compare checkedList value with each item */

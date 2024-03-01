@@ -148,9 +148,9 @@ input, button {
     align-items: flex-start;
     align-self: center;
 }
-.todo-list-none-frame img{
-    height: 100px;
-    opacity: 0.1;
+.todo-list-none-frame{
+    height: 50px;
+    opacity: 0.3;
     padding-top: 10%;
     padding-bottom: 10%;
 }
